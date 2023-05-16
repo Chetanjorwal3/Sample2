@@ -1,0 +1,70 @@
+.div__1 {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+input[type="number"] {
+    width: 100px;
+}
+
+input+span {
+    padding-right: 30px;
+}
+
+input:invalid+span::after {
+    /* position: absolute; */
+    content: "✖";
+    padding: 5px;
+    color: #8b0000;
+}
+
+input:valid+span::after {
+    /* position: absolute; */
+    content: "✓";
+    padding: 5px;
+    color: #009000;
+}
+
+
+.newsletter_delivery {
+    padding: 7px;
+    border: 0.7px solid teal;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .5rem;
+    
+
+}
+
+.newsletter_delivery input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: cyan;
+    /* padding-bottom: 1rem; */
+    
+}
+
+.newsletter_delivery input:focus {
+    outline: none;
+  }
+
+.flex-col-cart {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.flex-delivery {
+    display: flex;
+    flex-direction: column;
+}
+
+.display-contact {
+    display: inline-flex;
+    margin-bottom: 2rem
+}
