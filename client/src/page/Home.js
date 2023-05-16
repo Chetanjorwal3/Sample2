@@ -13,6 +13,7 @@ import { FcGallery } from "react-icons/fc";
 // import chef from "../assest/img/chef.png";
 // import quote from "../assest/img/quote.png";
 import gallery01 from "../assest/img/gallery01.png";
+
 import gallery02 from "../assest/img/gallery02.png";
 import gallery03 from "../assest/img/gallery03.png";
 import gallery04 from "../assest/img/gallery04.png";
