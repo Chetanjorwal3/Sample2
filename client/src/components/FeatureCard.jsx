@@ -4,21 +4,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setCartProduct } from "../redux/cartSlice";
 
-const FeatureCard = ({ id, img, title, price }) => {
+const FeatureCard = ({ id, img, name, decs, price }) => {
   const productItem = useSelector(state => state.productItem.productItem)
   // console.log(productItem)
   const dispatch = useDispatch()
   const cartProduct = useSelector(state => state.cartProduct)
-  const data = productItem.filter(product => product.id === id,[])[0]
+  const data = productItem.filter(product => product.id === id, [])[0]
 
-  const handleCartProduct = (e)=>{
+  const handleCartProduct = (e) => {
     e.stopPropagation()
     e.preventDefault()
-    dispatch(setCartProduct(data))  
+    dispatch(setCartProduct(data))
   }
 
   return (
-    <Link to={"/menu/" + id} onClick={()=>window.scrollTo({top: 0, behavior: 'smooth'})}>
+    <Link to={"/menu/" + id} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
       <div
         id={id}
         className="group w-full h-40 min-w-[250px] min-h-[200] max-w-[250px] bg-slate-200 hover:bg-teal-100 hover:drop-shadow-md mt-6 rounded p-1 flex items-center hover:scale-105 transition-all mr-3 cursor-pointer"
@@ -31,13 +31,16 @@ const FeatureCard = ({ id, img, title, price }) => {
         </div>
         <div className="py-3 flex h-full flex-col justify-end gap-1 font__5 w-full p-3">
           <h3 className="text-base md:text-base font-semibold text-textColor">
-            {title}
+            {name}
           </h3>
+          <p className="text-xs md:text-sm text-gray-500 font-medium my-1">
+            {decs}
+          </p>
           <p className="text-base font-semibold text-headingColor">
             <span className="text-base text-red-600">₹ </span>
             {price}
           </p>
-          <FaCartPlus className="text-xl text-slate-600 hover:text-red-600 cursor-pointer self-end" onClick={handleCartProduct}/>
+          <FaCartPlus className="text-xl text-slate-600 hover:text-red-600 cursor-pointer self-end" onClick={handleCartProduct} />
         </div>
       </div>
     </Link>
