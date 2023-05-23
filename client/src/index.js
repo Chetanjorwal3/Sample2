@@ -8,7 +8,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { MainContainer, CreateContainer } from "./components";
+import { MainContainer, CreateContainer, PopularContainer } from "./components";
 import Errorpage from "./components/Errorpage";
 import store from "./redux";
 import { Provider } from "react-redux";
@@ -38,6 +38,7 @@ const router = createBrowserRouter(
       <Route path='/menu/:productId' element={<MenuPage />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/createitem" element={<CreateContainer />}  />
+      <Route path="/popularitem" element={<PopularContainer />}  />
       <Route path="/Success" element={<Success />}  />
       <Route path="/Cancelled" element={<Cancelled />}  />
     </Route>

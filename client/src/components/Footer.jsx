@@ -4,7 +4,6 @@ import logo from "../assest/img/logo.png";
 import {FiSend, FiFacebook} from "react-icons/fi";
 import { FaGithub, FaInstagram } from "react-icons/fa";
 import { SlSocialLinkedin } from "react-icons/sl";
-// import "restaurant\src\components\footer.css";
 import "../footer.css";
 
 import { Link } from "react-router-dom";

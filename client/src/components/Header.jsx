@@ -86,13 +86,13 @@ const Header = () => {
   };
 
 
- 
+
 
   return (
     <header className="fixed z-50 w-screen bg-black text-white px-1 p-3 md:p-6 md:px-7 shadow-md select-none">
       {/**desktop & tablet */}
       <div className="hidden md:flex w-full h-full items-center justify-between">
-        <Link to={"/"} className="flex items-center gap-2 " onClick={()=>window.scrollTo({top: 0, behavior: 'smooth'})}>
+        <Link to={"/"} className="flex items-center gap-2 " onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <div className="flex items-center gap-2 ">
             {/* <Logo className="w-20 object-cover" alt="logo" /> */}
             <img src={logo} className=" w-12 object-cover" alt="logo" />
@@ -105,12 +105,12 @@ const Header = () => {
             <MdVerified />
             <p className="px-1 m-0 lg:block">{user.name}</p>
             {/* {process.env.REACT_APP_ADMIN_ID === user.email && */}
-            { "badshahrocks1@gmail.com" === user.email &&
+            {"badshahrocks1@gmail.com" === user.email &&
               <p className="text-sm font-medium text-lime-200 bg-red-600 px-3 rounded-full m-0">
-              Admin
+                Admin
               </p>
             }
-            
+
           </div>
         )}
 
@@ -121,16 +121,16 @@ const Header = () => {
             exit={{ opacity: 0, x: 200 }}
             className="flex items-center gap-6 h-full m-0 font__1"
           >
-            <NavLink  to="/"  onClick={()=>window.scrollTo({top: 0, behavior: 'smooth'})}  className={({isActive}) => `text-base  text-white hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer box-border h-full flex items-center hover:border-b-4 hover:border-yellow-400 hover:font-semibold p-1  ${isActive ? "border-b-2 border-green-600 font-semibold" : ""} `} end>
+            <NavLink to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className={({ isActive }) => `text-base  text-white hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer box-border h-full flex items-center hover:border-b-4 hover:border-yellow-400 hover:font-semibold p-1  ${isActive ? "border-b-2 border-green-600 font-semibold" : ""} `} end>
               Home
             </NavLink>
-            <NavLink to={"/menu"}  onClick={()=>window.scrollTo({top: 0, behavior: 'smooth'})} className={({isActive}) => `text-base text-white hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer  box-border h-full flex items-center hover:border-b-4 hover:border-yellow-400 hover:font-semibold p-1 ${isActive ? "border-b-2 border-green-600 font-semibold" : ""} `}>
+            <NavLink to={"/menu"} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className={({ isActive }) => `text-base text-white hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer  box-border h-full flex items-center hover:border-b-4 hover:border-yellow-400 hover:font-semibold p-1 ${isActive ? "border-b-2 border-green-600 font-semibold" : ""} `}>
               Menu
             </NavLink>
-            <NavLink to={"/about"} onClick={()=>window.scrollTo({top: 0, behavior: 'smooth'})}  className={({isActive}) =>`text-base text-white hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer  box-border h-full flex items-center hover:border-b-4 hover:border-yellow-400 hover:font-semibold p-1 ${isActive ? "border-b-2 border-green-600 font-semibold" : ""} `}>
+            <NavLink to={"/about"} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className={({ isActive }) => `text-base text-white hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer  box-border h-full flex items-center hover:border-b-4 hover:border-yellow-400 hover:font-semibold p-1 ${isActive ? "border-b-2 border-green-600 font-semibold" : ""} `}>
               About Us
             </NavLink>
-            <NavLink to={"service"} onClick={()=>window.scrollTo({top: 0, behavior: 'smooth'})}  className={({isActive}) =>`text-base text-white hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer  box-border h-full flex items-center hover:border-b-4 hover:border-yellow-400 hover:font-semibold p-1 ${isActive ? "border-b-2 border-green-600 font-semibold" : ""} `}>
+            <NavLink to={"service"} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className={({ isActive }) => `text-base text-white hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer  box-border h-full flex items-center hover:border-b-4 hover:border-yellow-400 hover:font-semibold p-1 ${isActive ? "border-b-2 border-green-600 font-semibold" : ""} `}>
               Service
             </NavLink>
           </motion.ul>
@@ -138,13 +138,13 @@ const Header = () => {
             whileTap={{ scale: 0.8 }}
             className="relative flex items-center justify-center"
           >
-          <Link to={"/cart"} onClick={()=>window.scrollTo({top: 0, behavior: 'smooth'})}>
-            <MdShoppingCart className="text-white text-2xl cursor-pointer" />
-            <div className="absolute top-0 -right-2 w-4 h-4  rounded-full bg-red-600 -translate-y-1/3 text-center">
-              <p className="text-xs text-white font-semibold">
-                {cartProductNumber}
-              </p>
-            </div>
+            <Link to={"/cart"} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <MdShoppingCart className="text-white text-2xl cursor-pointer" />
+              <div className="absolute top-0 -right-2 w-4 h-4  rounded-full bg-red-600 -translate-y-1/3 text-center">
+                <p className="text-xs text-white font-semibold">
+                  {cartProductNumber}
+                </p>
+              </div>
             </Link>
           </motion.div>
 
@@ -169,19 +169,28 @@ const Header = () => {
                 exit={{ opacity: 0, scale: 0.6 }}
                 className="absolute right-0 bg-white shadow-lg top-9 p-1 rounded mt-1 mr-2"
               >
-              <div className="arrowShow"></div>
+                <div className="arrowShow"></div>
                 <div className="rounded overflow-hidden font__5">
                   {/* {process.env.REACT_APP_ADMIN_ID === user.email && */}
-                  { "badshahrocks1@gmail.com" === user.email &&
-                    <Link
-                    to={"./createitem"}
-                    onClick={()=>setIsLogin(false)}
+                  {"badshahrocks1@gmail.com" === user.email &&
+                    <><Link
+                      to={"./createitem"}
+                      onClick={() => setIsLogin(false)}
 
-                    className="whitespace-nowrap flex hover:bg-green-400 hover:text-textColor text-gray-700 py-1 px-2 items-center w-full gap-3"
-                  >
-                    New Item
-                    <MdAddCircleOutline className=" flex items-center justify-items-center" />
-                  </Link>
+                      className="whitespace-nowrap flex hover:bg-green-400 hover:text-textColor text-gray-700 py-1 px-2 items-center w-full gap-3"
+                    >
+                      New Item in Menu
+                      <MdAddCircleOutline className=" flex items-center justify-items-center" />
+                    </Link>
+                    <Link
+                      to={"./popularitem"}
+                      onClick={() => setIsLogin(false)}
+
+                      className="whitespace-nowrap flex hover:bg-green-400 hover:text-textColor text-gray-700 py-1 px-2 items-center w-full gap-3"
+                    >
+                        New Item in Popular
+                        <MdAddCircleOutline className=" flex items-center justify-items-center" />
+                      </Link></>
                   }
                 </div>
 
@@ -220,10 +229,10 @@ const Header = () => {
             {/* {process.env.REACT_APP_ADMIN_ID === user.email && */}
             {"badshahrocks1@gmail.com" === user.email &&
               <p className="flex text-xs text-lime-200 bg-red-600 px-1 rounded-full m-0">
-              Admin
-            </p>
+                Admin
+              </p>
             }
-            
+
           </div>
         )}
 
@@ -232,13 +241,13 @@ const Header = () => {
             whileTap={{ scale: 0.8 }}
             className="relative flex items-center justify-center"
           >
-          <Link to={"/cart"} onClick={()=>window.scrollTo({top: 0, behavior: 'smooth'})}>
-            <MdShoppingCart className="text-white text-2xl cursor-pointer" />
-            <div className="absolute top-1 -right-2 w-4 h-4  rounded-full bg-red-600 -translate-y-1/3 text-center">
-              <p className="text-xs text-white font-semibold">
-              {cartProductNumber}
-              </p>
-            </div>
+            <Link to={"/cart"} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <MdShoppingCart className="text-white text-2xl cursor-pointer" />
+              <div className="absolute top-1 -right-2 w-4 h-4  rounded-full bg-red-600 -translate-y-1/3 text-center">
+                <p className="text-xs text-white font-semibold">
+                  {cartProductNumber}
+                </p>
+              </div>
             </Link>
 
           </motion.div>
@@ -260,22 +269,22 @@ const Header = () => {
               exit={{ opacity: 0, scale: 0.6 }}
               className="absolute right-0 w-screen z-40 bg-lime-100 shadow-lg top-12 px-4 py-6 rounded "
             >
-            <div className="arrowShow"></div>
+              <div className="arrowShow"></div>
               <div className="w-full font__1">
                 <ul className="flex flex-col  h-full text-slate-800 hover:border-b-2 hover:border-green-400  ">
-                  <NavLink to="/" onClick={()=>setIsLogin(false)} className="text-base  whitespace-nowrap flex 
+                  <NavLink to="/" onClick={() => setIsLogin(false)} className="text-base  whitespace-nowrap flex 
                   py-2 rounded hover:font-semibold px-3 items-center w-full gap-3 text-slate-800 hover:text-yellow-400">
                     Home
                   </NavLink>
-                  <NavLink to={"/menu"} onClick={()=>setIsLogin(false)}  className="text-base  whitespace-nowrap flex 
+                  <NavLink to={"/menu"} onClick={() => setIsLogin(false)} className="text-base  whitespace-nowrap flex 
                   py-2 rounded hover:font-semibold px-3 items-center w-full gap-3 text-slate-800 hover:text-yellow-400 ">
                     Menu
                   </NavLink>
-                  <NavLink to={"about"} onClick={()=>setIsLogin(false)} className="text-base  whitespace-nowrap flex 
+                  <NavLink to={"about"} onClick={() => setIsLogin(false)} className="text-base  whitespace-nowrap flex 
                  text-slate-800 hover:text-yellow-400 py-2 rounded hover:font-semibold px-3 items-center w-full gap-3 ">
                     About Us
                   </NavLink>
-                  <NavLink to={"service"} onClick={()=>setIsLogin(false)} className="text-base  whitespace-nowrap 
+                  <NavLink to={"service"} onClick={() => setIsLogin(false)} className="text-base  whitespace-nowrap 
                   flex text-slate-800 hover:text-yellow-400 py-2 rounded hover:font-semibold px-3 items-center w-full gap-3 ">
                     Service
                   </NavLink>
@@ -283,17 +292,17 @@ const Header = () => {
               </div>
               <div className="rounded overflow-hidden font__5">
                 {/* { process.env.REACT_APP_ADMIN_ID === user.email && */}
-                { "badshahrocks1@gmail.com" === user.email &&
-                <Link
-                  to={"./createitem"}
-                  onClick={()=>setIsLogin(false)}
-                  className="whitespace-nowrap flex hover:bg-green-400 hover:text-textColor text-gray-700
+                {"badshahrocks1@gmail.com" === user.email &&
+                  <Link
+                    to={"./createitem"}
+                    onClick={() => setIsLogin(false)}
+                    className="whitespace-nowrap flex hover:bg-green-400 hover:text-textColor text-gray-700
                    py-2 px-3 items-center w-full gap-3 hover:font-semibold"
-                >
-                  New Item
-                  <MdAddCircleOutline className="ml-auto " />
-                </Link>
-              }
+                  >
+                    New Item
+                    <MdAddCircleOutline className="ml-auto " />
+                  </Link>
+                }
               </div>
               <div className="rounded overflow-hidden font__5">
                 <div

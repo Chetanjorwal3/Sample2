@@ -18,10 +18,10 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { storage } from "../firebase.config";
-import { saveProductItem } from "../utils/firebaseFunctions";
+import { savePopularItem } from "../utils/firebaseFunctions";
 import RecentUpload from "./RecentUpload";
 
-const CreateContainer = () => {
+const PopularContainer = () => {
   const [product, setProduct] = useState({
     productName: "",
     productCatogories: "",
@@ -145,7 +145,7 @@ const CreateContainer = () => {
           price: product.productPrice,
           desc: product.productDesc,
         };
-        saveProductItem(productData);
+        savePopularItem(productData);
         setIsLoadingImage(false);
         setIsMsg(true);
         setMsg("Data Up successfully!!");
@@ -187,7 +187,7 @@ const CreateContainer = () => {
   return (
     <div className="py-5 md:py-10 font__5">
      <h1 className="capitalize text-lg md:text-2xl  font-semibold before:rounded-lg relative before:absolute before:-bottom-2 before:content before:left-0 before:w-32 before:h-1 before:bg-yellow-300 transition-all ease-in-out duration-100 text-fuchsia-300">
-      Add new Item in Menu
+      Add new Popular Item
       </h1> 
       <div className="w-11/12 max-w-2xl m-auto bg-slate-900 p-4 rounded shadow-md relative py-10 box-border">
         <div className="absolute top-0 left-0 right-0">
@@ -310,16 +310,16 @@ const CreateContainer = () => {
         </button>
       </div>
 
-      <div className="my-7 p-2 md:p-4">
+      {/* <div className="my-7 p-2 md:p-4">
         <h1 className="capitalize text-lg md:text-2xl  font-semibold before:rounded-lg relative before:absolute before:-bottom-2 before:content before:left-0 before:w-32 before:h-1 before:bg-yellow-300 transition-all ease-in-out duration-100 text-fuchsia-300">
           Recent Upload
         </h1>
         <div className="flex ">
           <RecentUpload />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
 
-export default CreateContainer;
+export default PopularContainer;

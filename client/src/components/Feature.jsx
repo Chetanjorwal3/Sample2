@@ -51,7 +51,7 @@ const Feature = () => {
     <div className="p-2  md:p-4 my-4">
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-semibold capitalize text-fuchsia-300 relative before:absolute before:rounded-lg before:content before:w-32 before:h-1 before:-bottom-2 before:left-0 before:bg-gradient-to-tr from-yellow-300 to-yellow-600 transition-all ease-in-out duration-100 font__1">
-          Our New Items
+          Our New Items in Menu
         </h2>
         {/* <div className="hidden md:flex gap-3 items-center">
             <motion.div
@@ -109,7 +109,9 @@ const Feature = () => {
           {productLoading
             ? new Array(7).fill(null).map((el, index) => {
                 return (
-                  <div  key={index} className="bg-slate-100 app__gallery-images_card  min-w-[250px] min-h-[200] m-2 my-6 p-16 flex justify-center items-end">
+                  <div  
+                  key={index} 
+                  className="bg-slate-100 app__gallery-images_card  min-w-[250px] min-h-[200] m-2 my-6 p-16 flex justify-center items-end">
                     <Loading />
                   </div>
                 );
@@ -127,13 +129,14 @@ const Feature = () => {
               })}
             </div> */}
 
-          <div className="flex flex-wrap gap-3 justify-center">
+          {/* <div className="flex flex-wrap gap-3 justify-center"> */}
+          <div className="flex">
             {productLoading
               ? new Array(7).fill(null).map((el, index) => {
                 return (
                   <div
                     key={index}
-                    className="bg-slate-100 min-w-[250px] min-h-[200] m-2 my-6 p-16 flex justify-center items-end"
+                    className="bg-slate-100 app__gallery-images_card min-w-[250px] min-h-[200] m-2 my-6 p-16 flex justify-center items-end"
                   >
                     <Loading />
                   </div>

@@ -74,7 +74,7 @@ const MenuStatic = () => {
           </div>
         </div>
       </div>
-      <Menu heading={"Related Products"} filterbyProps={data.category} />
+      {/* <Menu heading={"Related Products"} filterbyProps={data.category} /> */}
     </div>
   );
 };
