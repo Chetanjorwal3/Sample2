@@ -1,22 +1,13 @@
 import React, { useState } from "react";
 import { MdDriveFileRenameOutline, MdOutlineDelete } from "react-icons/md";
 import { categories } from "../database/headerData";
-import {
-  MdCloudUpload,
-  MdAccountBalanceWallet,
-  MdSource,
-} from "react-icons/md";
-import {FaRupeeSign} from "react-icons/fa"
+import { MdCloudUpload, MdAccountBalanceWallet, MdSource } from "react-icons/md";
+import { FaRupeeSign } from "react-icons/fa";
 
 import Loading from "../utils/Loading";
 import toast, { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
-import {
-  deleteObject,
-  getDownloadURL,
-  ref,
-  uploadBytesResumable,
-} from "firebase/storage";
+import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../firebase.config";
 import { savePopularItem } from "../utils/firebaseFunctions";
 import RecentUpload from "./RecentUpload";
@@ -24,24 +15,30 @@ import RecentUpload from "./RecentUpload";
 const PopularContainer = () => {
   const [product, setProduct] = useState({
     productName: "",
-    productCatogories: "",
+    productSubCatogory: "",
+    productCatogoryMain: "",
     productImage: "",
     productCalories: "",
     productPrice: "",
     productDesc: "",
   });
 
+  console.log(product);
+
   const [isLoadingImage, setIsLoadingImage] = useState(false);
   const [msg, setMsg] = useState("Chetan Jorwal");
   const [danger, setDanger] = useState("success");
   const [isMsg, setIsMsg] = useState(false);
 
+  const filteredSubCatogory = categories.find((cat) => cat.name === product.productCatogoryMain)?.subcategory;
+
   const handleOnChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
-    setProduct((preve) => {
+    console.log(name, value);
+    setProduct((prev) => {
       return {
-        ...preve,
+        ...prev,
         [name]: value,
       };
     });
@@ -58,8 +55,7 @@ const PopularContainer = () => {
     uploadImage.on(
       "state_changed",
       (snapshot) => {
-        const uploadProgress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        const uploadProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       },
       (error) => {
         console.log(error);
@@ -119,12 +115,7 @@ const PopularContainer = () => {
   const saveProductDetails = () => {
     setIsLoadingImage(true);
     try {
-      if (
-        !product.productName ||
-        !product.productImage ||
-        !product.productPrice ||
-        !categories
-      ) {
+      if (!product.productName || !product.productImage || !product.productPrice || !product.productCatogoryMain || !product.productSubCatogory) {
         setIsMsg(true);
         setMsg("Required fields can't be empty!!");
         setDanger("danger");
@@ -139,7 +130,8 @@ const PopularContainer = () => {
           id: `${Date.now()}`,
           title: product.productName,
           imgURL: product.productImage,
-          category: product.productCatogories,
+          category: product.productCatogoryMain,
+          subcategory: product.productSubCatogory,
           calories: product.productCalories,
           qty: 1,
           price: product.productPrice,
@@ -174,7 +166,8 @@ const PopularContainer = () => {
       return {
         ...preve,
         productName: "",
-        productCatogories: "Select categories",
+        productSubCatogory: "Select Sub Catogorys",
+        productCatogoryMain: "Select categories",
         productImage: "",
         productCalories: "",
         productPrice: "",
@@ -184,23 +177,15 @@ const PopularContainer = () => {
   }
 
   console.log(product);
+  // console.log(category);
   return (
     <div className="py-5 md:py-10 font__5">
-     <h1 className="capitalize text-lg md:text-2xl  font-semibold before:rounded-lg relative before:absolute before:-bottom-2 before:content before:left-0 before:w-32 before:h-1 before:bg-yellow-300 transition-all ease-in-out duration-100 text-fuchsia-300">
-      Add new Popular Item
-      </h1> 
+      <h1 className="capitalize text-lg md:text-2xl  font-semibold before:rounded-lg relative before:absolute before:-bottom-2 before:content before:left-0 before:w-32 before:h-1 before:bg-yellow-300 transition-all ease-in-out duration-100 text-fuchsia-300">Add new Top Dish</h1>
       <div className="w-11/12 max-w-2xl m-auto bg-slate-900 p-4 rounded shadow-md relative py-10 box-border">
         <div className="absolute top-0 left-0 right-0">
           {isMsg && (
             <>
-              <motion.p
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.6 }}
-                className={`text-white text-center p-1 rounded ${
-                  danger === "success" ? "bg-green-500" : "bg-red-500"
-                }`}
-              >
+              <motion.p initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.6 }} className={`text-white text-center p-1 rounded ${danger === "success" ? "bg-green-500" : "bg-red-500"}`}>
                 {msg}
               </motion.p>
             </>
@@ -208,22 +193,10 @@ const PopularContainer = () => {
         </div>
         <div className="border-teal-400 border-b-2 border-solid flex items-center box-border">
           <MdDriveFileRenameOutline className="text-2xl text-pink-50" />
-          <input
-            type="text"
-            placeholder="Enter the name"
-            name="productName"
-            value={product.productName}
-            onChange={handleOnChange}
-            className="px-3 py-1 w-full bg-transparent text-lime-100 border-none outline-none text-base box-border"
-          />
+          <input type="text" placeholder="Enter the name" name="productName" value={product.productName} onChange={handleOnChange} className="px-3 py-1 w-full bg-transparent text-lime-100 border-none outline-none text-base box-border" />
         </div>
         <div className="box-border border-teal-400">
-          <select
-            className="w-full my-3 py-2 px-3 text-base bg-slate-800 border-2 border-solid rounded box-border border-teal-400 text-lime-100"
-            name="productCatogories"
-            onChange={handleOnChange}
-            value={product.productCatogories}
-          >
+          <select className="w-full my-3 py-2 px-3 text-base bg-slate-800 border-2 border-solid rounded box-border border-teal-400 text-lime-100" name="productCatogoryMain" onChange={handleOnChange} value={product.productCatogoryMain}>
             <option value="Other">Select categories</option>
             {categories &&
               categories.map((el) => (
@@ -233,18 +206,22 @@ const PopularContainer = () => {
               ))}
           </select>
         </div>
+        <div className="box-border border-teal-400">
+          <select className="w-full my-3 py-2 px-3 text-base bg-slate-800 border-2 border-solid rounded box-border border-teal-400 text-lime-100" name="productSubCatogory" onChange={handleOnChange} value={product.productSubCatogory}>
+            <option value="Other">Select Product</option>
+            {filteredSubCatogory?.map((el) => (
+              <option value={el.url} key={el.id}>
+                {el.name}
+              </option>
+            ))}
+          </select>
+        </div>
         <label htmlFor="uploadImage">
           <div className=" relative w-full border-2 border-solid box-border h-60 p-1 flex justify-center items-center text-7xl text-white flex-col cursor-pointer">
             {product.productImage ? (
               <>
-                <img
-                  src={product.productImage}
-                  className="w-full h-full object-content box-border"
-                />
-                <button
-                  onClick={handleDelete}
-                  className="absolute bottom-0 right-0 box-border text-white p-1 rounded-t-full rounded-l-full cursor-pointer text-xl bg-red-600"
-                >
+                <img src={product.productImage} className="w-full h-full object-content box-border" />
+                <button onClick={handleDelete} className="absolute bottom-0 right-0 box-border text-white p-1 rounded-t-full rounded-l-full cursor-pointer text-xl bg-red-600">
                   <MdOutlineDelete />
                 </button>
               </>
@@ -253,13 +230,7 @@ const PopularContainer = () => {
             ) : (
               <>
                 <MdCloudUpload />
-                <input
-                  type="file"
-                  id="uploadImage"
-                  className="w-0 h-0"
-                  name="productImage"
-                  onChange={uploadImage}
-                />
+                <input type="file" id="uploadImage" className="w-0 h-0" name="productImage" onChange={uploadImage} />
                 <p className="text-xl">Click here to upload</p>
               </>
             )}
@@ -268,52 +239,25 @@ const PopularContainer = () => {
         <div className="md:flex md:gap-8">
           <div className="border-teal-400 border-b-2 border-solid flex items-center my-3 flex-1">
             <MdAccountBalanceWallet className="text-2xl text-pink-50" />
-            <input
-              type="text"
-              placeholder="Enter the Calories"
-              name="productCalories"
-              value={product.productCalories}
-              onChange={handleOnChange}
-              className="px-3 py-1 w-full bg-transparent text-lime-100 border-none outline-none text-base box-border"
-            />
+            <input type="text" placeholder="Enter the Calories" name="productCalories" value={product.productCalories} onChange={handleOnChange} className="px-3 py-1 w-full bg-transparent text-lime-100 border-none outline-none text-base box-border" />
           </div>
           <div className="border-teal-400 border-b-2 border-solid flex items-center my-3 flex-1">
             <FaRupeeSign className="text-2xl text-pink-50" />
-            <input
-              type="text"
-              placeholder="Enter the Prices"
-              name="productPrice"
-              value={product.productPrice}
-              onChange={handleOnChange}
-              className="px-3 py-1 w-full bg-transparent text-lime-100 border-none outline-none text-base box-border"
-            />
+            <input type="text" placeholder="Enter the Prices" name="productPrice" value={product.productPrice} onChange={handleOnChange} className="px-3 py-1 w-full bg-transparent text-lime-100 border-none outline-none text-base box-border" />
           </div>
         </div>
         <div className="border-teal-400 border-b-2 border-solid flex items-center my-3 flex-1">
           <MdSource className="text-2xl text-pink-50" />
-          <textarea
-            type="text"
-            placeholder="Enter the description"
-            name="productDesc"
-            value={product.productDesc}
-            onChange={handleOnChange}
-            className="px-3 py-1 w-full bg-transparent text-lime-100 border-none outline-none text-base resize-none box-border"
-          ></textarea>
+          <textarea type="text" placeholder="Enter the description" name="productDesc" value={product.productDesc} onChange={handleOnChange} className="px-3 py-1 w-full bg-transparent text-lime-100 border-none outline-none text-base resize-none box-border"></textarea>
         </div>
 
-        <button
-          type="button"
-          onClick={saveProductDetails}
-          className="w-full bg-pink-100 hover:bg-green-200 text-extrabold text-red-800 p-2 rounded box-border"
-        >
+        <button type="button" onClick={saveProductDetails} className="w-full bg-pink-100 hover:bg-green-200 text-extrabold text-red-800 p-2 rounded box-border">
           Save
         </button>
       </div>
 
       {/* <div className="my-7 p-2 md:p-4">
-        <h1 className="capitalize text-lg md:text-2xl  font-semibold before:rounded-lg relative before:absolute before:-bottom-2 before:content before:left-0 before:w-32 before:h-1 before:bg-yellow-300 transition-all ease-in-out duration-100 text-fuchsia-300">
-          Recent Upload
-        </h1>
+        <h1 className="capitalize text-lg md:text-2xl  font-semibold before:rounded-lg relative before:absolute before:-bottom-2 before:content before:left-0 before:w-32 before:h-1 before:bg-yellow-300 transition-all ease-in-out duration-100 text-fuchsia-300">Recent Upload</h1>
         <div className="flex ">
           <RecentUpload />
         </div>

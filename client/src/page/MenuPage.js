@@ -74,7 +74,7 @@ const MenuPage = () => {
           </div>
         </div>
       </div>
-      <Menu heading={"Related Products"} filterbyProps={data.category} />
+      <Menu heading={"Our Dishes"} filterbyProps={data.category} />
     </div>
   );
 };

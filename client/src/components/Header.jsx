@@ -105,7 +105,7 @@ const Header = () => {
             <MdVerified />
             <p className="px-1 m-0 lg:block">{user.name}</p>
             {/* {process.env.REACT_APP_ADMIN_ID === user.email && */}
-            {"badshahrocks1@gmail.com" === user.email &&
+            {"chetanjorwal3@gmail.com" === user.email &&
               <p className="text-sm font-medium text-lime-200 bg-red-600 px-3 rounded-full m-0">
                 Admin
               </p>
@@ -172,25 +172,17 @@ const Header = () => {
                 <div className="arrowShow"></div>
                 <div className="rounded overflow-hidden font__5">
                   {/* {process.env.REACT_APP_ADMIN_ID === user.email && */}
-                  {"badshahrocks1@gmail.com" === user.email &&
+                  {"chetanjorwal3@gmail.com" === user.email &&
                     <><Link
                       to={"./createitem"}
                       onClick={() => setIsLogin(false)}
 
                       className="whitespace-nowrap flex hover:bg-green-400 hover:text-textColor text-gray-700 py-1 px-2 items-center w-full gap-3"
                     >
-                      New Item in Menu
+                      Add New Item
                       <MdAddCircleOutline className=" flex items-center justify-items-center" />
                     </Link>
-                    <Link
-                      to={"./popularitem"}
-                      onClick={() => setIsLogin(false)}
-
-                      className="whitespace-nowrap flex hover:bg-green-400 hover:text-textColor text-gray-700 py-1 px-2 items-center w-full gap-3"
-                    >
-                        New Item in Popular
-                        <MdAddCircleOutline className=" flex items-center justify-items-center" />
-                      </Link></>
+                    </>
                   }
                 </div>
 
@@ -227,7 +219,7 @@ const Header = () => {
             <MdVerified />
             <p className="px-1 m-0 lg:block">{user.name}</p>
             {/* {process.env.REACT_APP_ADMIN_ID === user.email && */}
-            {"badshahrocks1@gmail.com" === user.email &&
+            {"chetanjorwal3@gmail.com" === user.email &&
               <p className="flex text-xs text-lime-200 bg-red-600 px-1 rounded-full m-0">
                 Admin
               </p>
@@ -292,14 +284,14 @@ const Header = () => {
               </div>
               <div className="rounded overflow-hidden font__5">
                 {/* { process.env.REACT_APP_ADMIN_ID === user.email && */}
-                {"badshahrocks1@gmail.com" === user.email &&
+                {"chetanjorwal3@gmail.com" === user.email &&
                   <Link
                     to={"./createitem"}
                     onClick={() => setIsLogin(false)}
                     className="whitespace-nowrap flex hover:bg-green-400 hover:text-textColor text-gray-700
                    py-2 px-3 items-center w-full gap-3 hover:font-semibold"
                   >
-                    New Item
+                    Add New Item
                     <MdAddCircleOutline className="ml-auto " />
                   </Link>
                 }

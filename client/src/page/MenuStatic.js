@@ -11,7 +11,7 @@ const MenuStatic = () => {
 //   const params = useParams()
   const navigate = useNavigate()
 
-  const data = productItem.filter(product => product.id ===  "1678788722320" ,[])[0]
+  const data = productItem.filter(product => product.id ===  "1685611982604" ,[])[0]
   // console.log(data)
 
   const dispatch = useDispatch()
@@ -74,7 +74,7 @@ const MenuStatic = () => {
           </div>
         </div>
       </div>
-      {/* <Menu heading={"Related Products"} filterbyProps={data.category} /> */}
+      <Menu heading={"Our Dishes"} filterbyProps={data.category} />
     </div>
   );
 };
