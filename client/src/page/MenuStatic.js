@@ -11,7 +11,7 @@ const MenuStatic = () => {
 //   const params = useParams()
   const navigate = useNavigate()
 
-  const data = productItem.filter(product => product.id ===  "1685611982604" ,[])[0]
+  const data = productItem.filter(product => product.id ===  "1685551421567" ,[])[0]
   // console.log(data)
 
   const dispatch = useDispatch()
